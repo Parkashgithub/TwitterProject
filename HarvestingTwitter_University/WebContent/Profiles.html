@@ -1,0 +1,539 @@
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <title>Dashboard | sprFlat - Admin Template</title>
+        <!-- Mobile specific metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Force IE9 to render in normal mode -->
+        <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+        <meta name="author" content="SuggeElson">
+        <meta name="description" content="sprFlat admin template - new premium responsive admin template. This template is designed to help you build the site administration without losing valuable time.Template contains all the important functions which must have one backend system.Build on great twitter boostrap framework">
+        <meta name="keywords" content="admin, admin template, admin theme, responsive, responsive admin, responsive admin template, responsive theme, themeforest, 960 grid system, grid, grid theme, liquid, jquery, administration, administration template, administration theme, mobile, touch , responsive layout, boostrap, twitter boostrap">
+        <meta name="application-name" content="sprFlat admin template">
+        <!-- Import google fonts - Heading first/ text second -->
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans:400,700">
+        <!--[if lt IE 9]>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css" />
+<![endif]-->
+        <!-- Css files -->
+        <link rel="stylesheet" href="http://themes.suggelab.com/sprflat/assets/css/main.min.css">
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-57-precomposed.png">
+      
+        <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+        <meta name="msapplication-TileColor" content="#3399cc">
+    <style type="text/css"></style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style><link rel="stylesheet" href="http://themes.suggelab.com/sprflat/assets/js/pages/skins/lightgray/skin.min.css"></head>
+    
+    
+    <script>
+    
+function get_uniprofile() {
+    	
+        //var baseUrl = 'http://115.146.93.22:5984';
+        uploadFile('onetwo', null);
+        return false;
+        
+
+        function uploadFile(document, file) {
+            fileReader = new FileReader(),
+            getRequest = new XMLHttpRequest(),
+            putRequest = new XMLHttpRequest();
+            putRequest1 = new XMLHttpRequest();
+			
+			//alert(id);
+            
+            getRequest.open('GET',  'Getprofiledetails', true);
+            
+            getRequest.send();
+            getRequest.onreadystatechange = function(response) {
+                if (getRequest.readyState == 4 && getRequest.status == 200) {
+                    var doc = JSON.parse(getRequest.responseText);
+                    alert(doc.result);
+                    /*for (var i = 0; i < doc.rows.length; i++) {
+                        var counter = doc.rows[i];
+                        //alert(counter.id);
+                        if (counter.id.indexOf("capturesuccess") > -1)
+                        {
+                        	var res = counter.id.split("_");
+                        	fillarray(res[2],res[3]);					//look student info
+                        }
+                    }
+                    app1(st1);*/
+                    
+                    //password = doc.password;
+                    //form_validate(password);
+                }
+            };
+        };
+    }
+    
+    
+get_uniprofile();
+    
+    
+    </script>
+    
+    
+    
+    <body class=" pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+        <!-- Start #header -->
+        <div id="header" class="header-fixed">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html" style="width:400px;">
+                            <span class="text-logo">Universities &nbsp;</span><span class="text-slogan"> Tweet Analysis</span> 
+                        </a>
+                    </div>
+                    <nav class="top-nav" role="navigation">
+                    </nav>
+                </div>
+                <!-- Start #header-area -->
+                <div id="header-area" class="fadeInDown">
+                    <div class="header-area-inner">
+                        <ul class="list-unstyled list-inline">
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="im-pie"></i>
+                                        <span>Earning Stats</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-images color-dark"></i>
+                                        <span>Gallery</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="en-light-bulb color-orange"></i>
+                                        <span>Fresh ideas</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-link color-blue"></i>
+                                        <span>Links</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-support color-red"></i>
+                                        <span>Support</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="st-lock color-teal"></i>
+                                        <span>Lock area</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End #header-area -->
+            </div>
+            <!-- Start .header-inner -->
+        </div>
+        <!-- End #header -->
+        <!-- Start #sidebar -->
+        <div id="sidebar" class="sidebar-fixed">
+            <!-- Start .sidebar-inner -->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="sidebar-inner" style="overflow: hidden; width: auto; height: 100%;">
+                <!-- Start #sideNav -->
+                <ul id="sideNav" class="nav nav-pills nav-stacked show-arrows">
+                    <li><a href="Index.html">Dashboard <i class="im-screen"></i></a>
+                    </li>
+                    <li><a href="Profiles.html" class="active">University Profile <i class="st-files"></i></a>
+                    <li><a href="tweets_geolocation.html">Tweets Geolocation <i class="st-map-marker"></i></a>
+                    <li><a href="tweets_heatmap.html" >Tweets Heatmap <i class="im-map2"></i></a>
+                    <li><a href="tweets_rankingyear.html" >Rankings by Year <i class="en-menu"></i></a>
+                    <li><a href="tweets_activetime.html" >Tweets by Time <i class="br-chart"></i></a>
+                    <li><a href="tweets_sources.html" >Tweets by Sources <i class="fa-android"></i></a>
+                    <li><a href="tweets_setiments.html" >Tweets by Sentiments <i class="fa-smile"></i></a>
+                    <li><a href="university_comparison.html" >Tweets Comparison <i class="fa-exchange"></i></a>
+                    
+                    
+                    
+                    </li>
+                      
+                </ul>
+                <!-- End #sideNav -->
+                <!-- Start .sidebar-panel -->
+                
+                <!-- End .sidebar-panel -->
+            </div><div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 0px; height: 165.02886405959px; background: rgb(153, 153, 153);"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.5; z-index: 90; right: 0px; background: rgb(238, 238, 238);"></div></div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #sidebar -->
+        <!-- Start #right-sidebar -->
+        <div id="right-sidebar" class="hide-sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="sidebar-inner" style="overflow: hidden; width: auto; height: 100%;">
+                <div class="sidebar-panel mt0">
+                    <div class="sidebar-panel-content fullwidth pt0">
+                        <div class="chat-user-list">
+                            <form class="form-horizontal chat-search" role="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search for user...">
+                                    <button type="submit"><i class="ec-search s16"></i>
+                                    </button>
+                                </div>
+                                <!-- End .form-group  -->
+                            </form>
+                            <ul class="chat-ui bsAccordion">
+                                <li>
+                                    <a href="#">Favorites <span class="notification teal">4</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/49.jpg" alt="@chadengle">Chad Engle
+                                                <span class="has-message"><i class="im-pencil"></i></span>
+                                            </a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/54.jpg" alt="@alagoon">Anthony Lagoon</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/52.jpg" alt="@koridhandy">Kory Handy</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/50.jpg" alt="@divya">Divia Manyan</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Online <span class="notification green">3</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/51.jpg" alt="@kolage">Eric Hofman</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/55.jpg" alt="@mikebeecham">Mike Beecham</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/53.jpg" alt="@derekebradley">Darek Bradly</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Offline <span class="notification red">5</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/56.jpg" alt="@laurengray">Lauren Grey</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/49.jpg" alt="@chadengle">Chad Engle</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/58.jpg" alt="@frankiefreesbie">Frankie Freesibie</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/57.jpg" alt="@joannefournier">Joane Fornier</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/59.jpg" alt="@aiiaiiaii">Alia Alien</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-box">
+                            <h5>Chad Engle</h5>
+                            <a id="close-user-chat" href="#" class="btn btn-xs btn-primary"><i class="en-arrow-left4"></i></a>
+                            <ul class="chat-ui chat-messages">
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/49.jpg" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">15 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Hello Sugge check out the last order.</p>
+                                </li>
+                                <li class="chat-me">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/48.jpg" alt="SuggeElson">
+                                    </p>
+                                    <p class="chat-name">SuggeElson <span class="chat-time">10 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Ok i will check it out.</p>
+                                </li>
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/49.jpg" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">now</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Thank you, have a nice day</p>
+                                </li>
+                            </ul>
+                            <div class="chat-write">
+                                <form action="#" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <textarea name="sendmsg" id="sendMsg" class="form-control elastic" rows="1"></textarea>
+                                        <a role="button" class="btn" id="attach_photo_btn">
+                                            <i class="fa-picture s20"></i> 
+                                        </a>
+                                        <input type="file" name="attach_photo" id="attach_photo">
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 0px; height: 775px; background: rgb(153, 153, 153);"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.5; z-index: 90; right: 0px; background: rgb(238, 238, 238);"></div></div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #right-sidebar -->
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="im-table2"></i> University Rankings</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb"><li><i class="im-home"></i><a href="index.html">Home</a><i class="en-arrow-right7"></i></li><li><i class="im-screen"></i> Dashboard </li></ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <div class="panel panel-default plain toggle panelClose panelRefresh" id="spr_3">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h4 class="panel-title">Ranking on basis of twitter data (Click university to populate)</h4>
+                                <div class="panel-controls panel-controls-hide" style="display: block; opacity: 1;"><a href="#" class="panel-refresh"><i class="im-spinner6"></i></a><a href="#" class="toggle panel-minimize"><i class="im-minus"></i></a><a href="#" class="panel-close"><i class="im-close"></i></a></div></div>
+                                <div class="panel-body">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: auto;"><div class="table-responsive" style="overflow: hidden; width: 100%; height: auto;"><table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="per5">
+                                                    #
+                                                </th>
+                                                <th class="per40"></th>
+                                                <th class="per40">University</th>
+                                                <th class="per15">Tweets</th>
+                                                <th class="per15">Following</th>
+                                                <th class="per15">Followers</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr onclick="window.location.href='unimelb_profile.html'">
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                	<image src="images/University_of_Melbourne_logo.png" width="50%" height="50%"></image>
+                                                </td>
+                                                <td>University of Melbourne</td>
+                                                <td>7076</td>
+                                                <td>862</td>
+                                                <td>37.8K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+													<image src="images/uniadelaide.png" width="50%" height="70%"></image>
+                                                </td>
+                                                <td>University of Adelaide</td>
+                                                <td>700</td>
+                                                <td>812</td>
+                                                <td>50K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    3
+                                                </td>
+                                                <td>
+													<image src="images/anu.png" width="50%" height="50%"></image>
+                                                </td>
+                                                <td>Australian National University</td>
+                                                <td>100</td>
+                                                <td>500</td>
+                                                <td>10K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+													<image src="images/Monash_logo.png" width="60%" height="50%"></image>
+                                                </td>
+                                                <td>Monash University</td>
+                                                <td>500</td>
+                                                <td>10000</td>
+                                                <td>100K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    5
+                                                </td>
+                                                <td>
+													<image src="images/UNSW.png" width="60%" height="70%"></image>
+                                                </td>
+                                                <td>University of New South Wales</td>
+                                                <td>5000</td>
+                                                <td>20500</td>
+                                                <td>23K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    6
+                                                </td>
+                                                <td>
+													<image src="images/Queensland.gif" width="60%" height="50%"></image>
+                                                </td>
+                                                <td>University of Queensland</td>
+                                                <td>23451</td>
+                                                <td>13345</td>
+                                                <td>15K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    7
+                                                </td>
+                                                <td>
+													<image src="images/sydney.gif" width="70%" height="90%"></image>
+                                                </td>
+                                                <td>University of Sydney</td>
+                                                <td>15000</td>
+                                                <td>140500</td>
+                                                <td>12K</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    8
+                                                </td>
+                                                <td>
+													<image src="images/unw1.jpg" width="60%" height="30%"></image>
+                                                </td>
+                                                <td>University of Western Australia</td>
+                                                <td>15000</td>
+                                                <td>21500</td>
+                                                <td>24K</td>
+                                            </tr>
+                                        </tbody>
+                                    </table></div><div class="slimScrollBar ui-draggable" style="height: 5px; position: absolute; bottom: 3px; opacity: 0.4; display: none; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; z-index: 99; width: 1291px; left: 0px; background: rgb(153, 153, 153);"></div><div class="slimScrollRail" style="width: 100%; height: 5px; position: absolute; bottom: 3px; display: none; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; opacity: 0.5; z-index: 90; background: rgb(51, 51, 51);"></div></div>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    
+                    
+                    
+                    <!-- End .row -->
+                    
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+        <!-- Javascripts -->
+        <!-- Load pace first -->
+        <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://themes.suggelab.com/sprflat/assets/plugins/core/pace/pace.min.js"></script>
+        <!-- Important javascript libs(put in all pages) -->
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
+        </script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="http://themes.suggelab.com/sprflat/assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
+        </script>
+        <!--[if lt IE 9]>
+  <script type="text/javascript" src="assets/js/libs/excanvas.min.js"></script>
+  <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
+<![endif]-->
+        <script src="http://themes.suggelab.com/sprflat/assets/js/pages/dashboard.js"></script>
+        <!-- Google Analytics:  -->
+        <script>
+        (function(i, s, o, g, r, a, m)
+        {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function()
+            {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-3560057-25', 'suggelab.com');
+        ga('send', 'pageview');
+        </script>
+    
+<div id="goup" style="position: fixed; display: block; z-index: 9; bottom: 2%; right: 1%;"><a style="opacity: 0.5;"><img src="http://themes.suggelab.com/sprflat/assets/img/backtop.png" style="width: 48px; display: none;"></a></div><tester id="tags1412336730348_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; letter-spacing: 0px; white-space: nowrap;"></tester><div id="flotTip" style="display: none; position: absolute; left: 1344px; top: 335px;"></div></body></html>

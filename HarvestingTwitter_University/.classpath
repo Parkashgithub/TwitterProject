@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/servlet-api.jar/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/twitter4j-4.0.2/lib/twitter4j-async-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/twitter4j-4.0.2/lib/twitter4j-core-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/twitter4j-4.0.2/lib/twitter4j-examples-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/twitter4j-4.0.2/lib/twitter4j-media-support-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/twitter4j-4.0.2/lib/twitter4j-stream-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/org.apache.commons.httpclient.jar/org.apache.commons.httpclient.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/fluent-hc-4.3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/httpclient-4.3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/httpclient-cache-4.3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/httpcore-4.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/httpcomponents-client-4.3.5-bin (1)/httpcomponents-client-4.3.5/lib/httpmime-4.3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9-test-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-logging-1.2-bin (1)/commons-logging-1.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/commons-logging-1.2-bin (1)/commons-logging-1.2/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Parkash/Downloads/lightcouch-0.1.3 (1).jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

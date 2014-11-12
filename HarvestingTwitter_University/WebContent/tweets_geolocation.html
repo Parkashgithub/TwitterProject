@@ -1,0 +1,751 @@
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <title>Dashboard | sprFlat - Admin Template</title>
+        <!-- Mobile specific metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <!-- Force IE9 to render in normal mode -->
+        <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+        <meta name="author" content="SuggeElson">
+        <meta name="description" content="sprFlat admin template - new premium responsive admin template. This template is designed to help you build the site administration without losing valuable time.Template contains all the important functions which must have one backend system.Build on great twitter boostrap framework">
+        <meta name="keywords" content="admin, admin template, admin theme, responsive, responsive admin, responsive admin template, responsive theme, themeforest, 960 grid system, grid, grid theme, liquid, jquery, administration, administration template, administration theme, mobile, touch , responsive layout, boostrap, twitter boostrap">
+        <meta name="application-name" content="sprFlat admin template">
+        <!-- Import google fonts - Heading first/ text second -->
+        
+        <!--[if lt IE 9]>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:700" rel="stylesheet" type="text/css" />
+<![endif]-->
+        <!-- Css files -->
+        <link rel="stylesheet" href="http://themes.suggelab.com/sprflat/assets/css/main.min.css">
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="http://themes.suggelab.com/sprflat/assets/img/ico/apple-touch-icon-57-precomposed.png">
+      
+        <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+        <meta name="msapplication-TileColor" content="#3399cc">
+    <style type="text/css"></style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style><link rel="stylesheet" href="http://themes.suggelab.com/sprflat/assets/js/pages/skins/lightgray/skin.min.css"></head>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+	
+	
+
+<script>
+/*
+ * Fluster2 0.1.1
+ * Copyright (C) 2009 Fusonic GmbH
+ *
+ * This file is part of Fluster2.
+ *
+ * Fluster2 is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * Fluster2 is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+function Fluster2(_map,_debug){var map=_map;var projection=new Fluster2ProjectionOverlay(map);var me=this;var clusters=new Object();var markersLeft=new Object();this.debugEnabled=_debug;this.gridSize=60;this.markers=new Array();this.currentZoomLevel=-1;this.styles={0:{image:'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m1.png',textColor:'#FFFFFF',width:53,height:52},10:{image:'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m2.png',textColor:'#FFFFFF',width:56,height:55},20:{image:'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m3.png',textColor:'#FFFFFF',width:66,height:65}};var zoomChangedTimeout=null;function createClusters(){var zoom=map.getZoom();if(clusters[zoom]){me.debug('Clusters for zoom level '+zoom+' already initialized.')}else{var clustersThisZoomLevel=new Array();var clusterCount=0;var markerCount=me.markers.length;for(var i=0;i<markerCount;i++){var marker=me.markers[i];var markerPosition=marker.getPosition();var done=false;for(var j=clusterCount-1;j>=0;j--){var cluster=clustersThisZoomLevel[j];if(cluster.contains(markerPosition)){cluster.addMarker(marker);done=true;break}}if(!done){var cluster=new Fluster2Cluster(me,marker);clustersThisZoomLevel.push(cluster);clusterCount++}}clusters[zoom]=clustersThisZoomLevel;me.debug('Initialized '+clusters[zoom].length+' clusters for zoom level '+zoom+'.')}if(clusters[me.currentZoomLevel]){for(var i=0;i<clusters[me.currentZoomLevel].length;i++){clusters[me.currentZoomLevel][i].hide()}}me.currentZoomLevel=zoom;showClustersInBounds()}function showClustersInBounds(){var mapBounds=map.getBounds();for(var i=0;i<clusters[me.currentZoomLevel].length;i++){var cluster=clusters[me.currentZoomLevel][i];if(mapBounds.contains(cluster.getPosition())){cluster.show()}}}this.zoomChanged=function(){window.clearInterval(zoomChangedTimeout);zoomChangedTimeout=window.setTimeout(createClusters,500)};this.getMap=function(){return map};this.getProjection=function(){return projection.getP()};this.debug=function(message){if(me.debugEnabled){console.log('Fluster2: '+message)}};this.addMarker=function(_marker){me.markers.push(_marker)};this.getStyles=function(){return me.styles};this.initialize=function(){google.maps.event.addListener(map,'zoom_changed',this.zoomChanged);google.maps.event.addListener(map,'dragend',showClustersInBounds);window.setTimeout(createClusters,1000)}}
+function Fluster2Cluster(_fluster,_marker){var markerPosition=_marker.getPosition();this.fluster=_fluster;this.markers=[];this.bounds=null;this.marker=null;this.lngSum=0;this.latSum=0;this.center=markerPosition;this.map=this.fluster.getMap();var me=this;var projection=_fluster.getProjection();var gridSize=_fluster.gridSize;var position=projection.fromLatLngToDivPixel(markerPosition);var positionSW=new google.maps.Point(position.x-gridSize,position.y+gridSize);var positionNE=new google.maps.Point(position.x+gridSize,position.y-gridSize);this.bounds=new google.maps.LatLngBounds(projection.fromDivPixelToLatLng(positionSW),projection.fromDivPixelToLatLng(positionNE));this.addMarker=function(_marker){this.markers.push(_marker)};this.show=function(){if(this.markers.length==1){this.markers[0].setMap(me.map)}else if(this.markers.length>1){for(var i=0;i<this.markers.length;i++){this.markers[i].setMap(null)}if(this.marker==null){this.marker=new Fluster2ClusterMarker(this.fluster,this);if(this.fluster.debugEnabled){google.maps.event.addListener(this.marker,'mouseover',me.debugShowMarkers);google.maps.event.addListener(this.marker,'mouseout',me.debugHideMarkers)}}this.marker.show()}};this.hide=function(){if(this.marker!=null){this.marker.hide()}};this.debugShowMarkers=function(){for(var i=0;i<me.markers.length;i++){me.markers[i].setVisible(true)}};this.debugHideMarkers=function(){for(var i=0;i<me.markers.length;i++){me.markers[i].setVisible(false)}};this.getMarkerCount=function(){return this.markers.length};this.contains=function(_position){return me.bounds.contains(_position)};this.getPosition=function(){return this.center};this.getBounds=function(){return this.bounds};this.getMarkerBounds=function(){var bounds=new google.maps.LatLngBounds(me.markers[0].getPosition(),me.markers[0].getPosition());for(var i=1;i<me.markers.length;i++){bounds.extend(me.markers[i].getPosition())}return bounds};this.addMarker(_marker)}
+function Fluster2ClusterMarker(_fluster,_cluster){this.fluster=_fluster;this.cluster=_cluster;this.position=this.cluster.getPosition();this.markerCount=this.cluster.getMarkerCount();this.map=this.fluster.getMap();this.style=null;this.div=null;var styles=this.fluster.getStyles();for(var i in styles){if(this.markerCount>i){this.style=styles[i]}else{break}}google.maps.OverlayView.call(this);this.setMap(this.map);this.draw()};Fluster2ClusterMarker.prototype=new google.maps.OverlayView();Fluster2ClusterMarker.prototype.draw=function(){if(this.div==null){var me=this;this.div=document.createElement('div');this.div.style.position='absolute';this.div.style.width=this.style.width+'px';this.div.style.height=this.style.height+'px';this.div.style.lineHeight=this.style.height+'px';this.div.style.background='transparent url("'+this.style.image+'") 50% 50% no-repeat';this.div.style.color=this.style.textColor;this.div.style.textAlign='center';this.div.style.fontFamily='Arial, Helvetica';this.div.style.fontSize='11px';this.div.style.fontWeight='bold';this.div.innerHTML=this.markerCount;this.div.style.cursor='pointer';google.maps.event.addDomListener(this.div,'click',function(){me.map.fitBounds(me.cluster.getMarkerBounds())});this.getPanes().overlayLayer.appendChild(this.div)}var position=this.getProjection().fromLatLngToDivPixel(this.position);this.div.style.left=(position.x-parseInt(this.style.width/2))+'px';this.div.style.top=(position.y-parseInt(this.style.height/2))+'px'};Fluster2ClusterMarker.prototype.hide=function(){this.div.style.display='none'};Fluster2ClusterMarker.prototype.show=function(){this.div.style.display='block'};
+function Fluster2ProjectionOverlay(map){google.maps.OverlayView.call(this);this.setMap(map);this.getP=function(){return this.getProjection()}}Fluster2ProjectionOverlay.prototype=new google.maps.OverlayView();Fluster2ProjectionOverlay.prototype.draw=function(){};
+</script>
+<script type="text/javascript">
+	
+// OnLoad function ...
+function initialize() {
+	
+	
+	/*var myLatlng = new google.maps.LatLng(-37.795466, 144.962419);
+    	  var myLatlng1 = new google.maps.LatLng(-31.794741, 130.963261);
+    	  var myLatlng2 = new google.maps.LatLng(-30.793872, 120.962472);
+    	  var myLatlng3 = new google.maps.LatLng(-17.793342, 144.960090);
+    	  var myLatlng4 = new google.maps.LatLng(-27.795805, 144.962772);
+    	  var myLatlng5 = new google.maps.LatLng(-35.796691, 144.960143);
+    	  var myLatlng6 = new google.maps.LatLng(-31.797925, 144.962997);
+    	  var myLatlng7 = new google.maps.LatLng(-35.799871, 144.959811);
+    	  var myLatlng8 = new google.maps.LatLng(-20.801689, 144.961227);
+    	  var myLatlng9 = new google.maps.LatLng(-15.802015, 144.963083);
+    	  var mapOptions = {
+    	    zoom: 4,
+    	    center: myLatlng
+    	  }
+    	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	
+	*/
+	
+  	
+	// Create a new map with some default settings
+    var myLatlng = new google.maps.LatLng(-37.795466, 144.962419);
+    	  var myLatlng1 = new google.maps.LatLng(-31.794741, 130.963261);
+    	  var myLatlng2 = new google.maps.LatLng(-30.793872, 120.962472);
+    	  var myLatlng3 = new google.maps.LatLng(-17.793342, 144.960090);
+    	  var myLatlng4 = new google.maps.LatLng(-27.795805, 144.962772);
+    	  var myLatlng5 = new google.maps.LatLng(-35.796691, 144.960143);
+    	  var myLatlng6 = new google.maps.LatLng(-31.797925, 144.962997);
+    	  var myLatlng7 = new google.maps.LatLng(-35.799871, 144.959811);
+    	  var myLatlng8 = new google.maps.LatLng(-20.801689, 144.961227);
+    	  var myLatlng9 = new google.maps.LatLng(-15.802015, 144.963083);
+	
+	
+	
+	
+	
+    var myOptions = {
+      zoom: 4,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+	
+	// Initialize Fluster and give it a existing map
+	var fluster = new Fluster2(map);
+	
+	  var marker1 = new google.maps.Marker({
+  	      position: myLatlng,
+  	      map: map,
+  	      title: 'Tweet!'
+  	  });
+  	  google.maps.event.addListener(marker1, "click", function(mark) {
+  		  populate(1);
+  		}); 
+  	  marker2 = new google.maps.Marker({
+  	      position: myLatlng1,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker2, "click", function(mark) {
+  		  populate(2);
+  		}); 
+  	  marker3 = new google.maps.Marker({
+  	      position: myLatlng2,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker3, "click", function(mark) {
+  		  populate(3);
+  		}); 
+  	  marker4 = new google.maps.Marker({
+  	      position: myLatlng3,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker4, "click", function(mark) {
+  		  populate(4);
+  		}); 
+  	  marker5 = new google.maps.Marker({
+  	      position: myLatlng4,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker5, "click", function(mark) {
+  		  populate(5);
+  		}); 
+  	  marker6 = new google.maps.Marker({
+  	      position: myLatlng5,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker6, "click", function(mark) {
+  		  populate(6);
+  		}); 
+  	  marker7 = new google.maps.Marker({
+  	      position: myLatlng6,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker7, "click", function(mark) {
+  		  populate(7);
+  		}); 
+  	  marker8 = new google.maps.Marker({
+  	      position: myLatlng7,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker8, "click", function(mark) {
+  		  populate(8);
+  		}); 
+  	  marker9 = new google.maps.Marker({
+  	      position: myLatlng8,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker9, "click", function(mark) {
+  		  populate(9);
+  		}); 
+  	  marker10 = new google.maps.Marker({
+  	      position: myLatlng9,
+  	      map: map,
+  	      title: 'Hello World!'
+  	  });
+  	  google.maps.event.addListener(marker10, "click", function(mark) {
+  		  populate(10);
+  		}); 
+		
+		
+		// Add the marker to the Fluster
+		fluster.addMarker(marker1);
+		fluster.addMarker(marker2);
+		fluster.addMarker(marker3);
+		fluster.addMarker(marker4);
+		fluster.addMarker(marker5);
+		fluster.addMarker(marker6);
+		fluster.addMarker(marker7);
+		fluster.addMarker(marker8);
+		fluster.addMarker(marker9);
+		fluster.addMarker(marker10);
+	
+	// Set styles
+	// These are the same styles as default, assignment is only for demonstration ...
+	fluster.styles = {
+		// This style will be used for clusters with more than 0 markers
+		0: {
+			image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m1.png',
+			textColor: '#FFFFFF',
+			width: 53,
+			height: 52
+		},
+		// This style will be used for clusters with more than 10 markers
+		10: {
+			image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m2.png',
+			textColor: '#FFFFFF',
+			width: 56,
+			height: 55
+		},
+		20: {
+			image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m3.png',
+			textColor: '#FFFFFF',
+			width: 66,
+			height: 65
+		}
+	};
+	
+	// Initialize Fluster
+	// This will set event handlers on the map and calculate clusters the first time.
+	fluster.initialize();
+	
+}
+
+</script>
+	
+    
+    
+    
+    
+    <script>
+    
+    /*function initialize() {
+    	  var myLatlng = new google.maps.LatLng(-37.795466, 144.962419);
+    	  var myLatlng1 = new google.maps.LatLng(-31.794741, 130.963261);
+    	  var myLatlng2 = new google.maps.LatLng(-30.793872, 120.962472);
+    	  var myLatlng3 = new google.maps.LatLng(-17.793342, 144.960090);
+    	  var myLatlng4 = new google.maps.LatLng(-27.795805, 144.962772);
+    	  var myLatlng5 = new google.maps.LatLng(-35.796691, 144.960143);
+    	  var myLatlng6 = new google.maps.LatLng(-31.797925, 144.962997);
+    	  var myLatlng7 = new google.maps.LatLng(-35.799871, 144.959811);
+    	  var myLatlng8 = new google.maps.LatLng(-20.801689, 144.961227);
+    	  var myLatlng9 = new google.maps.LatLng(-15.802015, 144.963083);
+    	  var mapOptions = {
+    	    zoom: 4,
+    	    center: myLatlng
+    	  }
+    	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    	   var marker1 = new google.maps.Marker({
+    	      position: myLatlng,
+    	      map: map,
+    	      title: 'Tweet!'
+    	  });
+    	  google.maps.event.addListener(marker1, "click", function(mark) {
+    		  populate(1);
+    		}); 
+    	  marker2 = new google.maps.Marker({
+    	      position: myLatlng1,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker2, "click", function(mark) {
+    		  populate(2);
+    		}); 
+    	  marker3 = new google.maps.Marker({
+    	      position: myLatlng2,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker3, "click", function(mark) {
+    		  populate(3);
+    		}); 
+    	  marker4 = new google.maps.Marker({
+    	      position: myLatlng3,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker4, "click", function(mark) {
+    		  populate(4);
+    		}); 
+    	  marker5 = new google.maps.Marker({
+    	      position: myLatlng4,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker5, "click", function(mark) {
+    		  populate(5);
+    		}); 
+    	  marker6 = new google.maps.Marker({
+    	      position: myLatlng5,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker6, "click", function(mark) {
+    		  populate(6);
+    		}); 
+    	  marker7 = new google.maps.Marker({
+    	      position: myLatlng6,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker7, "click", function(mark) {
+    		  populate(7);
+    		}); 
+    	  marker8 = new google.maps.Marker({
+    	      position: myLatlng7,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker8, "click", function(mark) {
+    		  populate(8);
+    		}); 
+    	  marker9 = new google.maps.Marker({
+    	      position: myLatlng8,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker9, "click", function(mark) {
+    		  populate(9);
+    		}); 
+    	  marker10 = new google.maps.Marker({
+    	      position: myLatlng9,
+    	      map: map,
+    	      title: 'Hello World!'
+    	  });
+    	  google.maps.event.addListener(marker10, "click", function(mark) {
+    		  populate(10);
+    		}); 
+    	  
+    	  
+    	  fluster.addMarker(marker1);
+    	  fluster.addMarker(marker2);
+    	  fluster.addMarker(marker3);
+    	  fluster.addMarker(marker4);
+    	  fluster.addMarker(marker5);
+    	  fluster.addMarker(marker6);
+    	  fluster.addMarker(marker7);
+    	  fluster.addMarker(marker8);
+    	  fluster.addMarker(marker9);
+    	  fluster.addMarker(marker10);
+    	  
+    	  fluster.styles = {
+    				// This style will be used for clusters with more than 0 markers
+    				0: {
+    					image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m1.png',
+    					textColor: '#FFFFFF',
+    					width: 53,
+    					height: 52
+    				},
+    				// This style will be used for clusters with more than 10 markers
+    				10: {
+    					image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m2.png',
+    					textColor: '#FFFFFF',
+    					width: 56,
+    					height: 55
+    				},
+    				20: {
+    					image: 'http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/m3.png',
+    					textColor: '#FFFFFF',
+    					width: 66,
+    					height: 65
+    				}
+    			};
+    	  
+    	  fluster.initialize();
+    	}*/
+
+    	//google.maps.event.addDomListener(window, 'load', initialize);
+    
+    </script>
+    
+    <body class=" pace-done" onload="initialize()"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+        <!-- Start #header -->
+        <div id="header" class="header-fixed">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html" style="width:400px;">
+                            <span class="text-logo">Universities &nbsp;</span><span class="text-slogan"> Tweet Analysis</span> 
+                        </a>
+                    </div>
+                    <nav class="top-nav" role="navigation">
+                    </nav>
+                </div>
+                <!-- Start #header-area -->
+                <div id="header-area" class="fadeInDown">
+                    <div class="header-area-inner">
+                        <ul class="list-unstyled list-inline">
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="im-pie"></i>
+                                        <span>Earning Stats</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-images color-dark"></i>
+                                        <span>Gallery</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="en-light-bulb color-orange"></i>
+                                        <span>Fresh ideas</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-link color-blue"></i>
+                                        <span>Links</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="ec-support color-red"></i>
+                                        <span>Support</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="shortcut-button">
+                                    <a href="#">
+                                        <i class="st-lock color-teal"></i>
+                                        <span>Lock area</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End #header-area -->
+            </div>
+            <!-- Start .header-inner -->
+        </div>
+        <!-- End #header -->
+        <!-- Start #sidebar -->
+        <div id="sidebar" class="sidebar-fixed">
+            <!-- Start .sidebar-inner -->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="sidebar-inner" style="overflow: hidden; width: auto; height: 100%;">
+                <!-- Start #sideNav -->
+                <ul id="sideNav" class="nav nav-pills nav-stacked show-arrows">
+                    <li><a href="Index.html">Dashboard <i class="im-screen"></i></a>
+                    </li>
+                    <li><a href="Profiles.html">University Profile <i class="st-files"></i></a>
+                    <li><a href="tweets_geolocation.html" class="active">Tweets Geolocation <i class="st-map-marker"></i></a>
+                    <li><a href="tweets_heatmap.html" >Tweets Heatmap <i class="im-map2"></i></a>
+                    <li><a href="tweets_rankingyear.html" >Rankings by Year <i class="en-menu"></i></a>
+                    <li><a href="tweets_activetime.html" >Tweets by Time <i class="br-chart"></i></a>
+                    <li><a href="tweets_sources.html" >Tweets by Sources <i class="fa-android"></i></a>
+                    <li><a href="tweets_setiments.html" >Tweets by Sentiments <i class="fa-smile"></i></a>
+                    <li><a href="university_comparison.html" >Tweets Comparison <i class="fa-exchange"></i></a>
+                    
+                    </li>
+                      
+                </ul>
+                <!-- End #sideNav -->
+                <!-- Start .sidebar-panel -->
+                
+                <!-- End .sidebar-panel -->
+            </div><div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 0px; height: 165.02886405959px; background: rgb(153, 153, 153);"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.5; z-index: 90; right: 0px; background: rgb(238, 238, 238);"></div></div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #sidebar -->
+        <!-- Start #right-sidebar -->
+        <div id="right-sidebar" class="hide-sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="sidebar-inner" style="overflow: hidden; width: auto; height: 100%;">
+                <div class="sidebar-panel mt0">
+                    <div class="sidebar-panel-content fullwidth pt0">
+                        <div class="chat-user-list">
+                            <form class="form-horizontal chat-search" role="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search for user...">
+                                    <button type="submit"><i class="ec-search s16"></i>
+                                    </button>
+                                </div>
+                                <!-- End .form-group  -->
+                            </form>
+                            <ul class="chat-ui bsAccordion">
+                                <li>
+                                    <a href="#">Favorites <span class="notification teal">4</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/49.jpg" alt="@chadengle">Chad Engle
+                                                <span class="has-message"><i class="im-pencil"></i></span>
+                                            </a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/54.jpg" alt="@alagoon">Anthony Lagoon</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/52.jpg" alt="@koridhandy">Kory Handy</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/50.jpg" alt="@divya">Divia Manyan</a>
+                                            <span class="status"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Online <span class="notification green">3</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="in collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/51.jpg" alt="@kolage">Eric Hofman</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/55.jpg" alt="@mikebeecham">Mike Beecham</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/53.jpg" alt="@derekebradley">Darek Bradly</a>
+                                            <span class="status online"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Offline <span class="notification red">5</span><i class="en-arrow-down5"></i></a>
+                                    <ul class="collapse">
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/56.jpg" alt="@laurengray">Lauren Grey</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/49.jpg" alt="@chadengle">Chad Engle</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/58.jpg" alt="@frankiefreesbie">Frankie Freesibie</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/57.jpg" alt="@joannefournier">Joane Fornier</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="chat-name">
+                                                <img class="chat-avatar" src="assets/img/avatars/59.jpg" alt="@aiiaiiaii">Alia Alien</a>
+                                            <span class="status offline"><i class="en-dot"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-box">
+                            <h5>Chad Engle</h5>
+                            <a id="close-user-chat" href="#" class="btn btn-xs btn-primary"><i class="en-arrow-left4"></i></a>
+                            <ul class="chat-ui chat-messages">
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/49.jpg" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">15 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Hello Sugge check out the last order.</p>
+                                </li>
+                                <li class="chat-me">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/48.jpg" alt="SuggeElson">
+                                    </p>
+                                    <p class="chat-name">SuggeElson <span class="chat-time">10 seconds ago</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Ok i will check it out.</p>
+                                </li>
+                                <li class="chat-user">
+                                    <p class="avatar">
+                                        <img src="assets/img/avatars/49.jpg" alt="@chadengle">
+                                    </p>
+                                    <p class="chat-name">Chad Engle <span class="chat-time">now</span>
+                                    </p>
+                                    <span class="status online"><i class="en-dot"></i></span>
+                                    <p class="chat-txt">Thank you, have a nice day</p>
+                                </li>
+                            </ul>
+                            <div class="chat-write">
+                                <form action="#" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <textarea name="sendmsg" id="sendMsg" class="form-control elastic" rows="1"></textarea>
+                                        <a role="button" class="btn" id="attach_photo_btn">
+                                            <i class="fa-picture s20"></i> 
+                                        </a>
+                                        <input type="file" name="attach_photo" id="attach_photo">
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 0px; height: 775px; background: rgb(153, 153, 153);"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.5; z-index: 90; right: 0px; background: rgb(238, 238, 238);"></div></div>
+            <!-- End .sidebar-inner -->
+        </div>
+        <!-- End #right-sidebar -->
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="im-table2"></i> Tweets Geolocation</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb"><li><i class="im-home"></i><a href="index.html">Home</a><i class="en-arrow-right7"></i></li><li><i class="im-screen"></i> Dashboard </li></ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+                        <div class="option-buttons">
+                            
+                        </div>
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <!-- Page start here ( usual with .row ) -->
+                    
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <div class="panel panel-default plain toggle panelClose panelRefresh" id="spr_3">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h4 class="panel-title">Map</h4>
+                                <div class="panel-controls panel-controls-hide" style="display: block; opacity: 1;"><a href="#" class="panel-refresh"><i class="im-spinner6"></i></a><a href="#" class="toggle panel-minimize"><i class="im-minus"></i></a><a href="#" class="panel-close"><i class="im-close"></i></a></div></div>
+                                
+                                <div class="panel-body">
+     							<select id="datesel">
+							  		<option value="all">All</option>
+							  		<option value="1">University of Melbourne</option>
+							  		<option value="2">University of Adelaide</option>
+							  		<option value="3">Australian National University</option>
+							  		<option value="4">Monash University</option>
+							  		<option value="5">University of New South Wales</option>
+							  		<option value="6">University of Queensland</option>
+							  		<option value="7">University of Sydney</option>
+							  		<option value="8">University of Western Australia</option>
+								  </select>
+                                </div>
+                                
+                                <div class="panel-body">
+     							<div id="map-canvas"></div>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    
+                    
+                    
+                    <!-- End .row -->
+                    
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+        <!-- Javascripts -->
+        <!-- Load pace first -->
+        <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://themes.suggelab.com/sprflat/assets/plugins/core/pace/pace.min.js"></script>
+        <!-- Important javascript libs(put in all pages) -->
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
+        </script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="http://themes.suggelab.com/sprflat/assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
+        </script>
+        <!--[if lt IE 9]>
+  <script type="text/javascript" src="assets/js/libs/excanvas.min.js"></script>
+  <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
+<![endif]-->
+        <script src="http://themes.suggelab.com/sprflat/assets/js/pages/dashboard.js"></script>
+        <!-- Google Analytics:  -->
+        <script>
+        (function(i, s, o, g, r, a, m)
+        {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function()
+            {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-3560057-25', 'suggelab.com');
+        ga('send', 'pageview');
+        </script>
+    
+<div id="goup" style="position: fixed; display: block; z-index: 9; bottom: 2%; right: 1%;"><a style="opacity: 0.5;"><img src="http://themes.suggelab.com/sprflat/assets/img/backtop.png" style="width: 48px; display: none;"></a></div><tester id="tags1412336730348_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; letter-spacing: 0px; white-space: nowrap;"></tester><div id="flotTip" style="display: none; position: absolute; left: 1344px; top: 335px;"></div></body></html>
